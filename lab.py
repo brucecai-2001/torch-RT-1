@@ -20,6 +20,7 @@ dataset_kwargs_list, sample_weights = make_oxe_dataset_kwargs_and_weights(
 )
 print("make_oxe_dataset_kwargs_and_weights")
 
+print("Start make_interleaved_dataset")
 dataset = make_interleaved_dataset(
     dataset_kwargs_list,
     sample_weights,
@@ -71,18 +72,18 @@ dataset = make_interleaved_dataset(
     traj_transform_threads=2,
     traj_read_threads=2,
 )
-print("make_interleaved_dataset")
+print("Finish make_interleaved_dataset")
 
 
 pytorch_dataset = TorchRLDSDataset(dataset)
-print("pytorch_dataset")
+print("make pytorch_dataset")
 
 dataloader = DataLoader(
     pytorch_dataset,
     batch_size=2,
     num_workers=0,  # important to keep this to 0 so PyTorch does not mess with the parallelism
 )
-print("dataloader")
+print("make dataloader")
 
 for i, sample in tqdm.tqdm(enumerate(dataloader)):
     print("sample{i}")
