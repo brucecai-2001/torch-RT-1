@@ -3,8 +3,8 @@ import tensorflow as tf
 import torch
 from torch.utils.data import DataLoader
 import tqdm
-from octo.data.dataset import make_interleaved_dataset
-from octo.data.oxe import make_oxe_dataset_kwargs_and_weights
+from data_loader.octo.data.dataset import make_interleaved_dataset
+from data_loader.octo.data.oxe import make_oxe_dataset_kwargs_and_weights
 
 # DATA_PATH = "/Users/caixinyu/Downloads/cmu_stretch"
 

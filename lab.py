@@ -3,13 +3,13 @@ import tensorflow as tf
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 
-from model import RT1
+#from model import RT1
 import tqdm
 from data_loader.octo.data.dataset import make_interleaved_dataset
 from data_loader.octo.data.oxe import make_oxe_dataset_kwargs_and_weights
 from data_loader.data_loaders import TorchRLDSDataset
 
-DATA_PATH = "/Users/caixinyu/Downloads/cmu_stretch"
+DATA_PATH = "/root/cmu_stretch"
 
 tf.config.set_visible_devices([], "CPU")
 

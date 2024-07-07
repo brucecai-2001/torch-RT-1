@@ -8,9 +8,9 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_datasets as tfds
 
-from octo.data import obs_transforms, traj_transforms
-from octo.data.utils import goal_relabeling, task_augmentation
-from octo.data.utils.data_utils import (
+from data_loader.octo.data import obs_transforms, traj_transforms
+from data_loader.octo.data.utils import goal_relabeling, task_augmentation
+from data_loader.octo.data.utils.data_utils import (
     allocate_threads,
     get_dataset_statistics,
     NormalizationType,
@@ -19,7 +19,7 @@ from octo.data.utils.data_utils import (
     sample_match_keys_uniform,
     tree_map,
 )
-from octo.utils.spec import ModuleSpec
+from data_loader.octo.utils.spec import ModuleSpec
 
 
 def apply_trajectory_transforms(
