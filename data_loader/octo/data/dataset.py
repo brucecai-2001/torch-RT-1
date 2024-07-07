@@ -381,6 +381,7 @@ def make_dataset_from_rlds(
 
     # builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
     builder = tfds.load(name, data_dir=data_dir, download=False) # load local dataset
+    print("tfds load dataset")
     
     # load or compute dataset statistics
     if isinstance(dataset_statistics, str):
