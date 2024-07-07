@@ -1,4 +1,5 @@
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 os.environ["TF_CPP_MIN_LOG_LEVEL"]='2'
 # import torch 
 import tensorflow as tf
@@ -25,9 +26,7 @@ dataset_kwargs = make_oxe_dataset_kwargs(
 )
 
 dataset = make_single_dataset(dataset_kwargs, train=True) # load the train split
-
 iterator = dataset.iterator()
-
 traj = next(iterator)
 print("Top-level keys: ", traj.keys())                  # dict_keys(['observation', 'task', 'action', 'dataset_name', 'action_pad_mask'])
 print("Observation keys: ", traj["observation"].keys()) # dict_keys(['image_primary', 'timestep', 'pad_mask_dict', 'timestep_pad_mask', 'task_completed'])
@@ -36,7 +35,7 @@ print("Task keys: ", traj["task"].keys())               # dict_keys(['language_i
 images = traj["observation"]["image_primary"]
 instruction = traj["task"]["language_instruction"]
 print(images.shape)  # should be: (traj_len, window_size, height, width, channels), (window_size defaults to 1), (196, 1, 128, 128, 3)
-print(instruction.shape) 
+print(instruction.shape) # should be: (traj_len,)
 
 # RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
