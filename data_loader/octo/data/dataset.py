@@ -379,10 +379,10 @@ def make_dataset_from_rlds(
     def is_nonzero_length(traj):
         return tf.shape(traj["action"])[0] > 0
 
-    # builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
-    builder = tfds.load(name, data_dir=data_dir, download=False) # load local dataset
+    builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
+    # builder = tfds.load(name, data_dir=data_dir, download=False) # load local dataset
     print("tfds load dataset")
-    
+
     # load or compute dataset statistics
     if isinstance(dataset_statistics, str):
         with tf.io.gfile.GFile(dataset_statistics, "r") as f:
