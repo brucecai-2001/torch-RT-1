@@ -380,6 +380,7 @@ def make_dataset_from_rlds(
         return tf.shape(traj["action"])[0] > 0
 
     builder = tfds.builder(name, data_dir=data_dir)
+    print("builder")
 
     # load or compute dataset statistics
     if isinstance(dataset_statistics, str):
@@ -532,13 +533,13 @@ def make_interleaved_dataset(
     dataset_sizes = []
     all_dataset_statistics = {}
     for dataset_kwargs in dataset_kwargs_list:
-        print(dataset_kwargs)
         _, dataset_statistics = make_dataset_from_rlds(**dataset_kwargs, train=train)
         dataset_sizes.append(dataset_statistics["num_transitions"])
         assert (
             dataset_kwargs["name"] not in all_dataset_statistics
         ), f"Duplicate name {dataset_kwargs['name']}"
         all_dataset_statistics[dataset_kwargs["name"]] = dataset_statistics
+    print("all_dataset_statistics")
 
     # balance and normalize weights
     if balance_weights:
