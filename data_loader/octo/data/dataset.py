@@ -379,8 +379,7 @@ def make_dataset_from_rlds(
     def is_nonzero_length(traj):
         return tf.shape(traj["action"])[0] > 0
 
-    download_and_prepare_kwargs={'download_config': tfds.core.download.DownloadConfig(try_download_gcs=False)}
-    builder = tfds.builder(name, data_dir=data_dir, try_gcs=False, download_and_prepare_kwargs=download_and_prepare_kwargs)
+    builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
     # builder = tfds.load(name, data_dir=data_dir, download=False) # load local dataset
     
     # load or compute dataset statistics
