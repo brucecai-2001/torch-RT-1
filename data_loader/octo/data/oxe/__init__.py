@@ -2,11 +2,11 @@ import copy
 import logging
 from typing import Any, Dict, List, Sequence, Tuple, Union
 
-from octo.data.oxe.oxe_dataset_configs import ActionEncoding, OXE_DATASET_CONFIGS
-from octo.data.oxe.oxe_dataset_mixes import OXE_NAMED_MIXES
-from octo.data.oxe.oxe_standardization_transforms import OXE_STANDARDIZATION_TRANSFORMS
-from octo.data.utils.data_utils import NormalizationType
-from octo.utils.spec import ModuleSpec
+from data_loader.octo.data.oxe.oxe_dataset_configs import ActionEncoding, OXE_DATASET_CONFIGS
+from data_loader.octo.data.oxe.oxe_dataset_mixes import OXE_NAMED_MIXES
+from data_loader.octo.data.oxe.oxe_standardization_transforms import OXE_STANDARDIZATION_TRANSFORMS
+from data_loader.octo.data.utils.data_utils import NormalizationType
+from data_loader.octo.utils.spec import ModuleSpec
 
 
 def make_oxe_dataset_kwargs(
