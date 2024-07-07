@@ -19,7 +19,6 @@ dataset_kwargs_list, sample_weights = make_oxe_dataset_kwargs_and_weights(
     load_camera_views=("primary", "wrist"),
 )
 print("make_oxe_dataset_kwargs_and_weights")
-print(dataset_kwargs_list)
 
 dataset = make_interleaved_dataset(
     dataset_kwargs_list,
