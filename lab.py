@@ -16,7 +16,7 @@ DATA_PATH = "/root/autodl-tmp/cmu_stretch"
 tf.config.set_visible_devices([], "GPU")
 
 
-# LOAD A SINGLE DATASET
+# load a single dataset
 dataset_kwargs = make_oxe_dataset_kwargs(
     "cmu_stretch",
     DATA_PATH,
@@ -27,84 +27,16 @@ dataset = make_single_dataset(dataset_kwargs, train=True) # load the train split
 iterator = dataset.iterator()
 
 traj = next(iterator)
-print("Top-level keys: ", traj.keys())
-print("Observation keys: ", traj["observation"].keys())
-print("Task keys: ", traj["task"].keys())
+print("Top-level keys: ", traj.keys())                  # dict_keys(['observation', 'task', 'action', 'dataset_name', 'action_pad_mask'])
+print("Observation keys: ", traj["observation"].keys()) # dict_keys(['image_primary', 'timestep', 'pad_mask_dict', 'timestep_pad_mask', 'task_completed'])
+print("Task keys: ", traj["task"].keys())               # dict_keys(['language_instruction', 'pad_mask_dict'])
 
 images = traj["observation"]["image_primary"]
-print(images.shape)  # should be: (traj_len, window_size, height, width, channels), (window_size defaults to 1)
+instruction = traj["task"]["language_instruction"]
+print(images.shape)  # should be: (traj_len, window_size, height, width, channels), (window_size defaults to 1), (196, 1, 128, 128, 3)
+print(instruction.shape) 
 
-# dataset = make_interleaved_dataset(
-#     dataset_kwargs_list,
-#     sample_weights,
-#     train=True,
-#     shuffle_buffer_size=1000,  # change to 500k for training, large shuffle buffers are important, but adjust to your RAM
-#     batch_size=None,  # batching will be handles in PyTorch Dataloader object
-#     balance_weights=True,
-#     traj_transform_kwargs=dict(
-#         goal_relabeling_strategy="uniform",
-#         window_size=2,
-#         action_horizon=4,
-#         subsample_length=100,
-#     ),
-#     frame_transform_kwargs=dict(
-#         image_augment_kwargs={
-#             "primary": dict(
-#                 random_resized_crop=dict(scale=[0.8, 1.0], ratio=[0.9, 1.1]),
-#                 random_brightness=[0.1],
-#                 random_contrast=[0.9, 1.1],
-#                 random_saturation=[0.9, 1.1],
-#                 random_hue=[0.05],
-#                 augment_order=[
-#                     "random_resized_crop",
-#                     "random_brightness",
-#                     "random_contrast",
-#                     "random_saturation",
-#                     "random_hue",
-#                 ],
-#             ),
-#             "wrist": dict(
-#                 random_brightness=[0.1],
-#                 random_contrast=[0.9, 1.1],
-#                 random_saturation=[0.9, 1.1],
-#                 random_hue=[0.05],
-#                 augment_order=[
-#                     "random_brightness",
-#                     "random_contrast",
-#                     "random_saturation",
-#                     "random_hue",
-#                 ],
-#             ),
-#         },
-#         resize_size=dict(
-#             primary=(256, 256),
-#             wrist=(128, 128),
-#         ),
-#         num_parallel_calls=200,
-#     ),
-#     traj_transform_threads=2,
-#     traj_read_threads=2,
-# )
-# print("make_interleaved_dataset")
-
-
-# pytorch_dataset = TorchRLDSDataset(dataset)
-# print("make pytorch_dataset")
-
-# dataloader = DataLoader(
-#     pytorch_dataset,
-#     batch_size=2,
-#     num_workers=0,  # important to keep this to 0 so PyTorch does not mess with the parallelism
-# )
-# print("make dataloader")
-
-# for i, sample in tqdm.tqdm(enumerate(dataloader)):
-#     print(sample)
-#     if i == 8:
-#         break
-# print("dataloder finishes")
-
-
+# RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
 # instruction = ["pick", "place"]
 
