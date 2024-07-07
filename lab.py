@@ -36,6 +36,7 @@ images = traj["observation"]["image_primary"]
 instruction = traj["task"]["language_instruction"]
 print(images.shape)  # should be: (traj_len, window_size, height, width, channels), (window_size defaults to 1), (196, 1, 128, 128, 3)
 print(instruction.shape) # should be: (traj_len,)
+print(instruction[0])
 
 # RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
