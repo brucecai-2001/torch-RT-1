@@ -7,7 +7,7 @@ import pickle
 from huggingface_hub import hf_hub_download
 import tensorflow as tf
 
-from octo.data.utils.data_utils import to_padding
+from data_loader.octo.data.utils.data_utils import to_padding
 
 
 def delete_and_rephrase(
