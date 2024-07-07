@@ -17,7 +17,7 @@ tf.config.set_visible_devices([], "GPU")
 
 
 # LOAD A SINGLE DATASET
-dataset_kwargs, sample_weights = make_oxe_dataset_kwargs(
+dataset_kwargs = make_oxe_dataset_kwargs(
     "cmu_stretch",
     DATA_PATH,
 )
