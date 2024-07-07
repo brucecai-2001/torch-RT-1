@@ -25,7 +25,7 @@ dataset_kwargs = make_oxe_dataset_kwargs(
     DATA_PATH,
 )
 
-# TF loader
+# TensorFlow loader
 dataset = make_single_dataset(dataset_kwargs, train=True) # load the train split
 iterator = dataset.iterator()
 traj = next(iterator)
@@ -39,16 +39,6 @@ print(images.shape)         # should be: (traj_len, window_size, height, width, 
 print(instruction.shape)    # should be: (traj_len,)
 print(instruction[0]) # "pull open a dishwasher"
 
-
-# pytorch loader
-pytorch_dataset = TorchRLDSDataset(dataset)
-dataloader = DataLoader(
-    pytorch_dataset,
-    batch_size=16,
-    num_workers=0,  # important to keep this to 0 so PyTorch does not mess with the parallelism
-)
-for i, batch in tqdm.tqdm(enumerate(dataloader)):
-    print(batch.shape)
 
 # RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
