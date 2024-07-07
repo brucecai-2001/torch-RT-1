@@ -379,7 +379,8 @@ def make_dataset_from_rlds(
     def is_nonzero_length(traj):
         return tf.shape(traj["action"])[0] > 0
 
-    builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
+    # builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
+    builder = tfds.builder_from_directory(builder_dir=data_dir)
     print("tfds load dataset")
 
     # load or compute dataset statistics
