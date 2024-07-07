@@ -1,4 +1,6 @@
-import torch 
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"]='2'
+# import torch 
 import tensorflow as tf
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
