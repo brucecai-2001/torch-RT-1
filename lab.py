@@ -14,7 +14,7 @@ DATA_PATH = "/root/cmu_stretch"
 tf.config.set_visible_devices([], "GPU")
 
 dataset_kwargs_list, sample_weights = make_oxe_dataset_kwargs_and_weights(
-    "oxe_magic_soup",
+    "cmu_test_loader",
     DATA_PATH,
     load_camera_views=("primary", "wrist"),
 )
