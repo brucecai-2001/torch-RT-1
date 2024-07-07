@@ -381,7 +381,6 @@ def make_dataset_from_rlds(
 
     # builder = tfds.builder(name, data_dir=data_dir, try_gcs=False)
     builder = tfds.builder_from_directory(builder_dir=data_dir)
-    print("tfds load dataset")
 
     # load or compute dataset statistics
     if isinstance(dataset_statistics, str):
@@ -540,7 +539,6 @@ def make_interleaved_dataset(
             dataset_kwargs["name"] not in all_dataset_statistics
         ), f"Duplicate name {dataset_kwargs['name']}"
         all_dataset_statistics[dataset_kwargs["name"]] = dataset_statistics
-    print("all_dataset_statistics")
 
     # balance and normalize weights
     if balance_weights:
