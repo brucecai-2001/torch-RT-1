@@ -130,7 +130,6 @@ def make_oxe_dataset_kwargs_and_weights(
 
     filtered_datasets, included_dataset_names = [], []
     for name, weight in data_mix:
-        print(name)
         if name not in included_dataset_names:
             filtered_datasets.append((name, weight))
             included_dataset_names.append(name)
@@ -140,7 +139,6 @@ def make_oxe_dataset_kwargs_and_weights(
 
     data_kwargs_list, weights = [], []
     for name, weight in data_mix:
-        print(name)
         try:
             data_kwargs_list.append(
                 make_oxe_dataset_kwargs(

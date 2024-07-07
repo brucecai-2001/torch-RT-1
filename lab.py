@@ -11,7 +11,7 @@ from data_loader.data_loaders import TorchRLDSDataset
 
 DATA_PATH = "/root/cmu_stretch"
 
-tf.config.set_visible_devices([], "CPU")
+tf.config.set_visible_devices([], "GPU")
 
 dataset_kwargs_list, sample_weights = make_oxe_dataset_kwargs_and_weights(
     "oxe_magic_soup",
@@ -19,6 +19,7 @@ dataset_kwargs_list, sample_weights = make_oxe_dataset_kwargs_and_weights(
     load_camera_views=("primary", "wrist"),
 )
 print("make_oxe_dataset_kwargs_and_weights")
+print(dataset_kwargs_list)
 
 dataset = make_interleaved_dataset(
     dataset_kwargs_list,
