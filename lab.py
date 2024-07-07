@@ -9,7 +9,7 @@ from data_loader.octo.data.dataset import make_interleaved_dataset
 from data_loader.octo.data.oxe import make_oxe_dataset_kwargs_and_weights
 from data_loader.data_loaders import TorchRLDSDataset
 
-DATA_PATH = "/root/cmu_stretch"
+DATA_PATH = "/root/autodl-tmp/cmu_stretch"
 
 tf.config.set_visible_devices([], "GPU")
 
