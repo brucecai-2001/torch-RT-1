@@ -47,12 +47,8 @@ dataloader = DataLoader(
     batch_size=16,
     num_workers=0,  # important to keep this to 0 so PyTorch does not mess with the parallelism
 )
-
 for i, sample in tqdm.tqdm(enumerate(dataloader)):
-    images = sample["observation"]["image_primary"]
-    instruction = sample["task"]["language_instruction"]
-
-    break
+    print(sample)
 
 # RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
