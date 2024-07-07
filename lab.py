@@ -26,6 +26,12 @@ dataset_kwargs = make_oxe_dataset_kwargs(
 )
 
 dataset = make_single_dataset(dataset_kwargs, train=True) # load the train split
+pytorch_dataset = TorchRLDSDataset(dataset)
+dataloader = DataLoader(
+    pytorch_dataset,
+    batch_size=16,
+    num_workers=0,  # important to keep this to 0 so PyTorch does not mess with the parallelism
+)
 iterator = dataset.iterator()
 traj = next(iterator)
 print("Top-level keys: ", traj.keys())                  # dict_keys(['observation', 'task', 'action', 'dataset_name', 'action_pad_mask'])
@@ -36,7 +42,7 @@ images = traj["observation"]["image_primary"]
 instruction = traj["task"]["language_instruction"]
 print(images.shape)  # should be: (traj_len, window_size, height, width, channels), (window_size defaults to 1), (196, 1, 128, 128, 3)
 print(instruction.shape) # should be: (traj_len,)
-print(instruction[0])
+print(instruction[0]) # pull open a dishwasher
 
 # RT-1 inference
 # frames = torch.randn(2, 5, 3, 300,300)
